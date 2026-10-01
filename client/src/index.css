@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Base resets ---- */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-text-deep font-sans;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus ring for keyboard navigation */
+  :focus-visible {
+    @apply outline-2 outline-primary outline-offset-2;
+  }
+
+  /* Remove default button styles */
+  button {
+    cursor: pointer;
+  }
+
+  /* Heading hierarchy */
+  h1 { @apply text-3xl font-bold text-text-deep tracking-tight; }
+  h2 { @apply text-2xl font-semibold text-text-deep; }
+  h3 { @apply text-xl font-semibold text-text-deep; }
+  h4 { @apply text-lg font-medium text-text-deep; }
+  h5 { @apply text-base font-medium text-text-deep; }
+  h6 { @apply text-sm font-medium text-text-deep; }
+}
+
+/* ---- Component layer ---- */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium
+           rounded transition-all duration-150 focus-visible:outline-2
+           focus-visible:outline-primary focus-visible:outline-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           select-none;
+  }
+
+  .btn-sm   { @apply btn px-3 py-1.5 text-sm; }
+  .btn-md   { @apply btn px-4 py-2 text-sm; }
+  .btn-lg   { @apply btn px-6 py-2.5 text-base; }
+
+  .btn-primary {
+    @apply bg-primary text-white border border-primary
+           hover:bg-primary-hover active:bg-primary-active
+           shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-surface text-text-deep border border-border
+           hover:bg-soft active:bg-border;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-text-muted border border-transparent
+           hover:bg-soft hover:text-text-deep;
+  }
+
+  .btn-danger {
+    @apply bg-error text-white border border-error
+           hover:bg-red-700 active:bg-red-800;
+  }
+
+  /* Neo-brutalist accent button */
+  .btn-accent {
+    @apply bg-primary text-white border-2 border-text-deep
+           shadow-brutal hover:translate-x-[-1px] hover:translate-y-[-1px]
+           hover:shadow-[3px_3px_0px_0px_#202635]
+           active:translate-x-[1px] active:translate-y-[1px] active:shadow-none
+           transition-all duration-100;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-surface border border-border rounded-lg;
+  }
+
+  /* Form elements */
+  .input {
+    @apply w-full px-3 py-2 text-sm text-text-deep bg-surface
+           border border-border rounded transition-colors duration-150
+           placeholder:text-text-placeholder
+           focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary
+           disabled:bg-soft disabled:text-text-muted disabled:cursor-not-allowed;
+  }
+
+  .input-error {
+    @apply border-error focus:border-error focus:ring-error;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-text-deep mb-1;
+  }
+
+  .helper-text {
+    @apply text-xs text-text-muted mt-1;
+  }
+
+  .error-text {
+    @apply text-xs text-error mt-1;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .badge-primary  { @apply badge bg-primary-soft text-primary; }
+  .badge-success  { @apply badge bg-success-soft text-success; }
+  .badge-warning  { @apply badge bg-warning-soft text-warning; }
+  .badge-error    { @apply badge bg-error-soft text-error; }
+  .badge-neutral  { @apply badge bg-soft text-text-muted; }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 bg-soft rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-primary rounded-full transition-all duration-300;
+  }
+
+  /* Divider */
+  .divider { @apply border-t border-border; }
+
+  /* Skeleton */
+  .skeleton {
+    @apply bg-soft animate-pulse-soft rounded;
+  }
+
+  /* Page layout */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
